@@ -1,0 +1,80 @@
+@startuml cesar
+skinparam groupInheritance 2
+' El constructor recibe 
+'   una llave que son dos carácteres en un array estático
+' Cuenta con un método propio que debe hacer
+' Realizar el proceso del cifrador César para los carácteres dentro del texto este se va a cifrar con la llave determinada por un usuario,
+' Para obtener el texto es necesario llamar al método de clase readFile
+' El texto puede contener carácteres especiales por lo que deben de quedar como tal,
+' es decir sí es un carácter no hacerle ninguna transformación.
+' Para una mayor simplicidad el texto será tratado en minúsculas
+' Ademas la clase cuenta con un método heredado que le permite desencriptar  
+class Caesar{
+  -key : char[2]
+  +String cipher(String text)
+}
+
+' El constructor no recibe ningún párametro
+' Cuenta con dos métodos propios que deben hacer
+'   El método createRandomKey tiene la labor de crear una llave de forma aleatoria
+'   que será usada en el siguiente método muchas veces
+'   El método getTextsProbable usa diferentes llaves para intentar desencriptar el texto pasado, pero este usará dos de sus enumeraciones para establecer que el texto es cohérente en el idioma dado en este caso especifico inglés
+class CaesarAttack{
+  -char[2] : createRandomKey()
+  +String[] getTextsProbable()
+}
+
+abstract Desencrypter{
+  +String descipher(String textEncrypted, char[2] key)
+}
+
+class FileService {
+  + static String readFile(String path)
+  + static void writeTxt(String path, String text)
+}
+
+enum Pronouns{
+  'Personals
+  I
+  YOU
+  WE
+  THEY
+  HE
+  SHE
+  IT
+  'Object
+  ME
+  HIM
+  HER
+  US
+  THEM
+  'Posessive
+  MINE
+  YOURS
+  HIS
+  HERS
+  OURS
+  THEIRS
+}
+
+enum VerbsAuxiliars{
+  IS
+  ARE
+  AM
+  WAS
+  WERE
+  WILL
+}
+
+Desencrypter <|-- Caesar
+Desencrypter <|-- CaesarAttack
+
+' FileService *-down- Caesar
+' FileService *-down- CaesarAttack
+Caesar -down-* FileService
+CaesarAttack -down-* FileService
+
+' Pronouns *-down- CaesarAttack
+CaesarAttack -down-* Pronouns
+VerbsAuxiliars *-left- CaesarAttack
+@enduml
