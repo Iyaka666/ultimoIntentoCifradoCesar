@@ -2,7 +2,7 @@
 skinparam groupInheritance 2
 
 class CaesarCipher{
-  +static string encrypt(string text, int clave)
+  +static string encrypt(string text, int key)
   +static string desencrypt(string textEncrypted, int clave)
 }
 
@@ -17,14 +17,6 @@ class FileService {
   + static void writeTxt(string path, string text)
 }
 
-abstract WordsShorts{
-  + static PRONOUNS : string[]
-  + static VERBS_AUX : string[]
-  + static ARTICLES : string[]
-  + static LETTERS_MORE_USE : char[]
-}
-
-WordsShorts <|-- CaesarAttack
 FileService <.. CaesarCipher
 FileService <.. CaesarAttack
 CaesarCipher <.. CaesarAttack
