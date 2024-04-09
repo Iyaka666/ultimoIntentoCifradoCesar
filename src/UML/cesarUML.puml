@@ -24,7 +24,6 @@ class Caesar{
 '     pero este usará dos de sus enumeraciones para establecer que el texto es cohérente en el idioma
 '     dado en este caso especifico inglés
 class CaesarAttack{
-  -text : String
   -char[2] : createRandomKey()
   +String[] getTextsProbable()
 }
@@ -34,7 +33,7 @@ class CaesarAttack{
 '   - un texto encriptado 
 '   - una llave para poder tener idea de como desencriptar 
 interface Desencrypter{
-  +String descipher(String textEncrypted, char[2] key)
+  +String descipher(String textEncrypted)
 }
 
 ' Una clase que se encarga de las operaciones sobre archivos, en este caso sólo escritura y lectura
