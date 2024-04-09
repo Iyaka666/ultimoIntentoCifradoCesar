@@ -7,7 +7,11 @@ public class View {
   
   private char[] key;
 
-  public void setVisible(boolean b){
+  public void setVisible(boolean visible){
+    if(!visible){
+      return ;
+    }
+    
     String input = "";
     
     BufferedReader reader = new BufferedReader( new InputStreamReader(System.in));
