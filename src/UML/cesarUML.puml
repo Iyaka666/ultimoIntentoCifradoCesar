@@ -80,8 +80,8 @@ enum VerbsAuxiliars{
 Desencrypter <|-- Caesar
 Desencrypter <|-- CaesarAttack
 
-' Caesar -down-* FileService
-' CaesarAttack -down-* FileService
+Caesar .down. FileService
+CaesarAttack .down. FileService
 
 ' Pronouns *-down- CaesarAttack
 CaesarAttack -left-* Pronouns
