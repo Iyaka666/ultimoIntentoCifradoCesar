@@ -2,9 +2,6 @@ package Model;
 
 public class CaesarAttack{
   private String text;
-  private final char [] moreUseLetter = "ETAONIHSRLDUCMWYFGPBVKJXQZ".toLowerCase().toCharArray();
-  private Pronoums pronoums;
-  private VerbsAuxiliars verbs;
 
   public CaesarAttack(String text){
     setText(text);
@@ -29,13 +26,6 @@ public class CaesarAttack{
 
   public String[] getTextsProbable(int limit){
     String[] textsProbable = new String[limit];
-    Pronoums[] otherPron = Pronoums.values();
-    VerbsAuxiliars[] otherVerbs = VerbsAuxiliars.values();
-    
-    
-    // for(Object object : otherPron){
-    //   if(object.toString().equals())
-    // }
     return textsProbable;
   }
 }
