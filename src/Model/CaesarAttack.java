@@ -6,7 +6,7 @@ public class CaesarAttack {
   private VerbsAuxiliars verbs;
 
   public CaesarAttack(String text){
-    this.text = text;
+    setText(text);
   }
 
   public String getText() {
@@ -14,7 +14,7 @@ public class CaesarAttack {
   }
 
   public void setText(String text) {
-    this.text = text;
+    this.text = text.toLowerCase();
   }
 
   private char[] createRandomKey(){
