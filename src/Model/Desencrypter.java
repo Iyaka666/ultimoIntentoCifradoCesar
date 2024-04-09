@@ -1,5 +1,5 @@
 package Model;
 
 interface Desencrypter{
-  String descipher(String textEncrypted, char[] key);
+  public String descipher(String textEncrypted, char[] key);
 }
