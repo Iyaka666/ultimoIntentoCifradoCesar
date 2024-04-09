@@ -33,7 +33,7 @@ public class Caesar implements Desencrypter{
   }
 
   @Override
-  public String descipher(String textEncrypted, char[] key){
+  public String descipher(String textEncrypted){
     String desencrypted = "";
     return desencrypted;
   }

@@ -1,6 +1,6 @@
 package Model;
 
-public class CaesarAttack {
+public class CaesarAttack implements Desencrypter{
   private String text;
   private Pronoums pronoums;
   private VerbsAuxiliars verbs;
@@ -17,13 +17,24 @@ public class CaesarAttack {
     this.text = text.toLowerCase();
   }
 
+  private int getRandom(int limitTop, int limitBottom){
+    return (int)Math.round( Math.random() * (limitBottom - limitTop) + limitTop );
+  }
+
   private char[] createRandomKey(){
-    char[] randomKey = {'a','b'};
+    char[] randomKey = {(char)getRandom(122, 97), (char)getRandom(122,97)};
     return randomKey; 
+  }
+
+  @Override
+  public String descipher(String textEncrypted){
+    
+    return "";
   }
 
   public String[] getTextsProbable(){
     String[] textsProbable = {"enuciado","enuciado1"};
+
     return textsProbable;
   }
 }
