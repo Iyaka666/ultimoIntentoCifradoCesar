@@ -2,7 +2,6 @@
 skinparam groupInheritance 2
 ' El constructor recibe 
 '   - Una llave que son dos carácteres en un array estático
-'   - El texto que se va a cifrar
 ' Cuenta con un método propio que debe
 '   - Realizar el proceso del cifrador César para los carácteres 
 '     dentro del texto este se va a cifrar con la llave determinada por un usuario,
@@ -12,7 +11,6 @@ skinparam groupInheritance 2
 ' - Para una mayor simplicidad el texto será tratado en minúsculas
 ' - Ademas la clase cuenta con la interfaz de una implementacion de desencriptar  
 class Caesar{
-  - text : String
   -key : char[2]
   +String cipher(String text)
 }
@@ -39,7 +37,7 @@ interface Desencrypter{
   +String descipher(String textEncrypted, char[2] key)
 }
 
-' Una clase que se encarga de las operaciones sobre archivos, en este caso solo escritura y lectura
+' Una clase que se encarga de las operaciones sobre archivos, en este caso sólo escritura y lectura
 class FileService {
   + static String readFile(String path)
   + static void writeTxt(String path, String text)
@@ -83,12 +81,10 @@ enum VerbsAuxiliars{
 Desencrypter <|-- Caesar
 Desencrypter <|-- CaesarAttack
 
-' FileService *-down- Caesar
-' FileService *-down- CaesarAttack
-Caesar -down-* FileService
-CaesarAttack -down-* FileService
+' Caesar -down-* FileService
+' CaesarAttack -down-* FileService
 
 ' Pronouns *-down- CaesarAttack
-CaesarAttack -down-* Pronouns
-VerbsAuxiliars *-left- CaesarAttack
+CaesarAttack -left-* Pronouns
+VerbsAuxiliars *-down- CaesarAttack
 @enduml
