@@ -1,89 +1,31 @@
 @startuml cesar
 skinparam groupInheritance 2
-' El constructor recibe 
-'   - Una llave que son dos carácteres en un array estático
-' Cuenta con un método propio que debe
-'   - Realizar el proceso del cifrador César para los carácteres 
-'     dentro del texto este se va a cifrar con la llave determinada por un usuario,
-' - Para obtener el texto es necesario llamar al método de clase readFile
-' - El texto puede contener carácteres especiales por lo que deben de quedar como tal,
-'   es decir sí se encuentra un carácter especial no hacerle ninguna transformación.
-' - Para una mayor simplicidad el texto será tratado en minúsculas
-' - Ademas la clase cuenta con la interfaz de una implementacion de desencriptar  
-class Caesar{
-  -key : char[2]
-  +String cipher(String text)
+
+class CaesarCipher{
+  +static string encrypt(string text, int clave)
+  +static string desencrypt(string textEncrypted, int clave)
 }
 
-' El constructor recibe
-'   - El texto encriptado para su posible desencriptación
-' Cuenta con dos métodos propios que deben hacer
-'   - El método createRandomKey tiene la labor de crear una llave de forma aleatoria
-'     que será usada en el siguiente método muchas veces
-'   - El método getTextsProbable usa diferentes llaves para intentar desencriptar el texto pasado, 
-'     pero este usará dos de sus enumeraciones para establecer que el texto es cohérente en el idioma
-'     dado en este caso especifico inglés
 class CaesarAttack{
   -char[2] : createRandomKey()
-  +String[] getTextsProbable()
-}
-
-' La interfaz debe ser implemetada en los Caesar
-' Tiene un método que debe decifrar a partir de los párametros que son
-'   - un texto encriptado 
-'   - una llave para poder tener idea de como desencriptar 
-interface Desencrypter{
-  +String descipher(String textEncrypted)
+  +string[] getTextsProbable(int limit)
 }
 
 ' Una clase que se encarga de las operaciones sobre archivos, en este caso sólo escritura y lectura
 class FileService {
-  + static String readFile(String path)
-  + static void writeTxt(String path, String text)
+  + static string readFile(string path)
+  + static void writeTxt(string path, string text)
 }
 
-' Una enumeración de tres de los siete tipos de pronombres del inglés
-enum Pronouns{
-  'Personals
-  I
-  YOU
-  WE
-  THEY
-  HE
-  SHE
-  IT
-  'Object
-  ME
-  HIM
-  HER
-  US
-  THEM
-  'Posessive
-  MINE
-  YOURS
-  HIS
-  HERS
-  OURS
-  THEIRS
+abstract WordsShorts{
+  + static PRONOUNS : string[]
+  + static VERBS_AUX : string[]
+  + static ARTICLES : string[]
+  + static LETTERS_MORE_USE : char[]
 }
 
-' Una enumeración con los verbos auxiliares del presente, pasado y futuro usados en inglés
-enum VerbsAuxiliars{
-  IS
-  ARE
-  AM
-  WAS
-  WERE
-  WILL
-}
-
-Desencrypter <|-- Caesar
-Desencrypter <|-- CaesarAttack
-
-Caesar .down. FileService
-CaesarAttack .down. FileService
-
-' Pronouns *-down- CaesarAttack
-CaesarAttack -left-* Pronouns
-VerbsAuxiliars *-down- CaesarAttack
+WordsShorts <|-- CaesarAttack
+FileService <.. CaesarCipher
+FileService <.. CaesarAttack
+CaesarCipher <.. CaesarAttack
 @enduml
