@@ -1,5 +1,8 @@
+
+import View.View;
+
 public class Main{
-  public static void main(String[] args){
-    System.out.println("Hola Mundo");
-  }
+  View view = new View();
+  
+  view.setVisible(true);
 }

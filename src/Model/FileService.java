@@ -15,10 +15,10 @@ import java.util.Scanner;
  */
 public class FileService {
 
-    public FileService() {
+    private FileService() {
     }
     
-    public String readFile(String path) throws Exception {
+    public static String readFile(String path) throws Exception {
 
         Scanner scanner = new Scanner(new File(path));
         String linea = null;
